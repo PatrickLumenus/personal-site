@@ -100,11 +100,12 @@ export const getLattestBlogs = async (): Promise<BlogInterface[]> => {
             if (response.ok) {
                 // process the response.
                 const body = await response.json() as GetLatestBlogsResponse;
-                const newProjects = body.data.filter(suspect => !containsBlogPost(suspect));
+                const newBlogs = body.data.filter(suspect => !containsBlogPost(suspect));
+                const loadedAll = newBlogs.length < BASE_BLOGS_COUNT;
                 setBlogs((prev) => {
                     return {
-                        latest: [...newProjects, ...prev.latest],
-                        hasUnloadedContent: prev.hasUnloadedContent,
+                        latest: [...newBlogs, ...prev.latest],
+                        hasUnloadedContent: !loadedAll,
                         searchResults: prev.searchResults,
                         retrievedBlogs: [...prev.retrievedBlogs, ...body.data.filter(blog => !containsBlogPost(blog))],
                     };
@@ -206,3 +207,12 @@ export const getBlogById = async (id: string): Promise<BlogInterface | null> => 
 
     return target;
 }
+
+/**
+ * hasUnloadedBlogContent()
+ * 
+ * determines if there are unloaded blog content.
+ * @returns TRUE if there are unloaded posts. FALSE otherweise
+ */
+
+export const hasUnloadedBlogContent = () => blogs.hasUnloadedContent;

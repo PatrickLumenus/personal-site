@@ -3,7 +3,6 @@ import { recaptchaScriptLoading } from '../../App';
 import { recaptchaKey } from '../../constants';
 import { BadRequestException } from '../../utils/errors/bad-request.exception';
 import { RequestTimedoutException } from '../../utils/errors/request-timed-out.exception';
-import { ServerErrorException } from '../../utils/errors/server-error.exception';
 import { TooManyRequestsException } from '../../utils/errors/too-many-requests.exception';
 import Spinner from './../spinner/Spinner';
 import MessageBox from '../message-box/MessageBox';
@@ -144,9 +143,18 @@ const ContactForm: Component = () => {
     return canSendMessage() ? enabledStyle : disabledStyle;
   };
 
+  const resetForm = () => {
+    setNameField({ value: "", hasChanged: false });
+    setEmailField({ value: "", hasChanged: false });
+    setSubjectField({ value: "", hasChanged: false });
+    setMessageField({ value: "", hasChanged: false });
+    setFormSubmitted(false);
+  };
+
   const submitForm = async () => {
     setProcessing(true);
     setServerError("");
+    const token = await grecaptcha.enterprise.execute(recaptchaKey, { action: 'contact'});
 
     try {
         await sendMessage({
@@ -154,8 +162,10 @@ const ContactForm: Component = () => {
             email: emailField().value,
             subject: subjectField().value,
             message: messageField().value,
-            token: await grecaptcha.enterprise.execute(recaptchaKey, { action: 'contact'})
+            token: token
         });
+
+        setFormSubmitted(true);
     }
     catch(e) {
         let message = "";
@@ -182,14 +192,6 @@ const ContactForm: Component = () => {
     finally {
         setProcessing(false);
     }
-  }
-
-  const resetForm = () => {
-      setNameField({ value: "", hasChanged: false});
-      setEmailField({ value: "", hasChanged: false });
-      setSubjectField({ value: "", hasChanged: false });
-      setMessageField({ value: "", hasChanged: false });
-      setFormSubmitted(false);
   }
 
   return (

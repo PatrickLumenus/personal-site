@@ -6,7 +6,7 @@ import { GetLatestProjectsResponseInterface } from './interfaces/get-latest-proj
 import { GetProjectByIdResponseInterface } from './interfaces/get-project-by-id-response.interface';
 import { ProjectInterface } from './interfaces/project.interface';
 
-const BASE_PROJECTS_COUNT = 3;
+const BASE_PROJECTS_COUNT = 10;
 const BASE_PROJECTS_ENDPOINT = `${baseApiEndpoint}/portfolio`;
 const SEARCH_PROJECTS_ENDPOINT = `${baseApiEndpoint}/search/projects`;
 
@@ -104,11 +104,12 @@ export const getLatestProjects = async (): Promise<ProjectInterface[]> => {
                 // process the response.
                 const body = await response.json() as GetLatestProjectsResponseInterface;
                 const newProjects = body.data.filter(suspect => !containsProject(suspect));
+                const loadedAll = newProjects.length < BASE_PROJECTS_COUNT;
                 setProjects((prev) => {
                     return {
                         latest: [...newProjects, ...prev.latest],
                         searchResults: prev.searchResults,
-                        hasUnloadedContent: prev.hasUnloadedContent,
+                        hasUnloadedContent: !loadedAll,
                         retrievedProjects: [...prev.retrievedProjects, ...body.data.filter(project => !containsProject(project))],
                     };
                 });
@@ -278,3 +279,11 @@ export const getProjectsBySearchCriteria = async (query: string): Promise<Projec
         }
     }
 }
+
+/**
+ * hasUnloadedProjectContent()
+ * 
+ * determines if there are any unloaded content.
+ * @returns TRUE if there are unloaded project.
+ */
+export const hasUnloadedProjectContent = () => projects.hasUnloadedContent;
