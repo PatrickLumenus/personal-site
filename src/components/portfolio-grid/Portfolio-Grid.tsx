@@ -22,7 +22,6 @@ const PortfolioGrid: Component = () => {
           actionText="retry"
           onConfirm={() => {
             reset();
-            refetch();
           }}
           message={getMessageForError(error)}
         />

@@ -42,8 +42,8 @@ const NavigationBar: Component = () => {
   // ==========================================
 
   return (
-    <nav class="bg-white shadow">
-      <div class="container mx-auto px-6 py-3 md:flex md:justify-between md:items-center">
+    <nav class="bg-white shadow inset-x-0">
+      <div class="container mx-auto px-6 py-2 md:flex md:justify-between md:items-center">
         <div class="flex justify-between items-center">
           <div>
             <Link

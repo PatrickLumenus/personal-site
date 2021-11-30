@@ -131,6 +131,18 @@ const MailingListRegistration: Component = () => {
     }
   };
 
+  /**
+   * determines the styles of the submit button.
+   */
+  const submitButtonStyle = createMemo(() => {
+    if (canSubmitForm()) {
+      return "w-full text-white p-2 bg-primary rounded-lg text-center";
+    }
+    else {
+      return "w-full text-white p-2 bg-primary rounded-lg text-center opacity-50";
+    }
+  });
+
   const reset = () => {
     // reset the form fields.
     setEmailField({ value: "", hasChanged: false});
@@ -181,7 +193,7 @@ const MailingListRegistration: Component = () => {
                 <input
                   type="text"
                   name="name"
-                  class="w-full p-2 rounded-l-lg"
+                  class="w-full p-2 rounded-lg"
                   placeholder="Name"
                   autocomplete="name"
                   value={emailField().value}
@@ -202,7 +214,7 @@ const MailingListRegistration: Component = () => {
                 <input
                   type="text"
                   name="email"
-                  class="w-full p-2 rounded-l-lg"
+                  class="w-full p-2 rounded-lg"
                   placeholder="email"
                   autocomplete="email"
                   value={emailField().value}
@@ -216,7 +228,7 @@ const MailingListRegistration: Component = () => {
               </div>
               <div class="my-2 w-full">
                 <button
-                  class="w-full text-white p-2 bg-primary rounded-r-lg text-center"
+                  class={submitButtonStyle()}
                   type="submit"
                   onClick={submitForm}
                   disabled={!canSubmitForm()}

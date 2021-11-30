@@ -1,7 +1,7 @@
 import { Component, onMount } from "solid-js";
 import hljs from "highlight.js";
 import { documentToHtmlString,  } from "@contentful/rich-text-html-renderer";
-import { Document, BLOCKS, INLINES, MARKS, Hyperlink } from "@contentful/rich-text-types";
+import { Document, BLOCKS, INLINES, MARKS, Hyperlink, AssetLinkBlock } from "@contentful/rich-text-types";
 
 // css
 import "highlight.js/styles/github.css";
@@ -62,6 +62,15 @@ const ContentfulRichText: Component<ContentfulRichTextProps> = (props) => {
           `<div class="border-l-4 border-gray-500 pl-4 mb-6 italic rounded">${next(
             node.content
           )}</div>`,
+        [BLOCKS.EMBEDDED_ASSET]: (node, next) => {
+          return `
+          <div class="flex flex-wrap justify-center">
+            <div class="w-6/12 sm:w-4/12 px-4">
+              <img src="https://${node.data.target.fields.file.url}" alt="${node.data.target.fields.title}" class="shadow rounded max-w-full h-auto align-middle border-none" />
+            </div>
+          </div>
+          `;
+        },
         [INLINES.HYPERLINK]: (node, next) => {
           const hyperlink = node as Hyperlink;
           return `<a href=${

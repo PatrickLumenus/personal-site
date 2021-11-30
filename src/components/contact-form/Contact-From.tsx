@@ -136,9 +136,9 @@ const ContactForm: Component = () => {
   // determines the button style
   const getButtonStyle = () => {
     const enabledStyle =
-      "py-3 px-6 bg-primary text-white font-bold w-full sm:w-32";
+      "py-3 px-6 bg-primary text-white font-bold w-full sm:w-32 rounded-lg";
     const disabledStyle =
-      "py-3 px-6 bg-primary text-white font-bold w-full sm:w-32 opacity-50";
+      "py-3 px-6 bg-primary text-white font-bold w-full sm:w-32 opacity-50 rounded-lg";
 
     return canSendMessage() ? enabledStyle : disabledStyle;
   };
@@ -220,7 +220,7 @@ const ContactForm: Component = () => {
                 </Show>
                 <input
                   type="text"
-                  class="border-solid border-gray-400 border-2 p-3 md:text-xl w-full"
+                  class="border-solid border-gray-400 border-2 rounded-lg p-3 md:text-xl w-full"
                   placeholder="Name"
                   value={nameField().value}
                   autocomplete="name"
@@ -241,7 +241,7 @@ const ContactForm: Component = () => {
                 </Show>
                 <input
                   type="text"
-                  class="border-solid border-gray-400 border-2 p-3 md:text-xl w-full"
+                  class="border-solid border-gray-400 border-2 rounded-lg p-3 md:text-xl w-full"
                   placeholder="Email Address"
                   autocomplete="email"
                   value={emailField().value}
@@ -263,7 +263,7 @@ const ContactForm: Component = () => {
                 </Show>
                 <input
                   type="text"
-                  class="border-solid border-gray-400 border-2 p-3 md:text-xl w-full"
+                  class="border-solid border-gray-400 border-2 rounded-lg p-3 md:text-xl w-full"
                   placeholder="Subject"
                   value={subjectField().value}
                   onInput={(e) =>
@@ -284,7 +284,7 @@ const ContactForm: Component = () => {
                 <textarea
                   cols="30"
                   rows="8"
-                  class="border-solid border-gray-400 border-2 p-3 md:text-xl w-full"
+                  class="border-solid border-gray-400 border-2 rounded-lg p-3 md:text-xl w-full"
                   placeholder="Message"
                   value={messageField().value}
                   onInput={(e) =>

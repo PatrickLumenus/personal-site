@@ -18,11 +18,13 @@ const App: Component = () => {
   });
 
   return (
-    <>
+    <div class="bg-white">
       <NavigationBar />
-      <Routes />
-      <Footer />
-    </>
+      <div class = "py-0">
+        <Routes />
+        <Footer />
+      </div>
+    </div>
   );
 };
 

@@ -36,6 +36,10 @@ export const routes: RouteDefinition[] = [
         component: lazy(() => import('./pages/contact/Contact'))
     },
     {
+        path: '/subscriptions/unsubscribe',
+        component: lazy(() => import('./pages/unsubscribe/Unsubscribe'))
+    },
+    {
         // Fallback/Not Found page.
         path: '/*all',
         component: lazy(() => import('./pages/not-found/Not-Found')),

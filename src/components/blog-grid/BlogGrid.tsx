@@ -22,23 +22,22 @@ const BlogGrid: Component = () => {
           actionText="retry"
           onConfirm={() => {
             reset();
-            refetch();
           }}
           message={getMessageForError(error)}
         />
       )}
     >
       <Suspense fallback={<Spinner />}>
+        <div class="flex content-center justify-center py-4">
+          <h1 class="text-primary text-4xl">Blogs</h1>
+        </div>
         <div class="bg-white min-h-screen py-32 px-10 ">
-          <div class="flex content-center justify-center">
-            <h1 class="text-primary text-4xl">Blogs</h1>
-          </div>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-x-10 xl-grid-cols-4 gap-y-10 gap-x-6 ">
             <For each={blogs() ? blogs() : []} fallback={<h3> No Content </h3>}>
               {(blog, index) => <BlogCard blog={blog} />}
             </For>
           </div>
-          <Show when = {hasUnloadedBlogContent()}>
+          <Show when={hasUnloadedBlogContent()}>
             <div class="flex content-center justify-center py-4">
               <button
                 onClick={refetch}
