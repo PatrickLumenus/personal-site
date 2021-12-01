@@ -46,7 +46,7 @@ const BlogPost: Component = () => {
                 />
               </div>
 
-              <div class="px-2">
+              <div class="px-2 py-4">
                 <ContentfulRichText content={post()!.content} />
               </div>
             </main>

@@ -36,8 +36,11 @@ export const missionText = `
 // Social Links
 // ====================================
 
-export const githubLink = new URL('https://github.com/PatrickLumenus');
-export const twitterLink = new URL('https://twitter.com/patricklumenus');
+export const githubLink: URL|null = new URL('https://github.com/PatrickLumenus');
+export const twitterLink: URL|null = new URL('https://twitter.com/patricklumenus');
+export const facebookLink: URL|null = null;
+export const instagramLink: URL|null = null;
+export const dribbleLink: URL|null = null;
 
 // ====================================
 // Portfolio Page

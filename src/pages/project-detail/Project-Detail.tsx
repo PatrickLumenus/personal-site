@@ -32,7 +32,7 @@ const ProjectDetail: Component = () => {
 
                 <img
                   src={project()!.logo.source.toString()}
-                  class="w-full object-contain lg:rounded"
+                  class="w-full object-contain lg:rounded mb-12"
                   style="height: 28em;"
                 />
               </div>

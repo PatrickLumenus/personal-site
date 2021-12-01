@@ -1,21 +1,55 @@
+
 import { useNavigate } from "solid-app-router";
-import { Component } from "solid-js";
+import { Component, createSignal, createMemo, Show } from "solid-js";
+import Spinner from "../../components/spinner/Spinner";
+import UnsubscribeComplete from "../../components/unsubscribe-complete/UnsubscribeComplete";
+import { recaptchaScriptLoading } from './../../App';
+
+interface UnsubscribeFormField {
+    value: string;
+    hasChanged: boolean;
+}
 
 const Unsubscribe: Component = () => {
-  const navigate = useNavigate();
+  // a flag to indicate
+  const [hasUnsubscribed, setHasUnsubscribed] = createSignal(false);
+  const [emailFormField, setEmailFormField] = createSignal({
+      value: '',
+      hasChanged: false
+  } as UnsubscribeFormField);
+
+  // determines if there is an email error.
+  const emailError = createMemo(() => {
+    const field = emailFormField();
+    let error = "";
+    const validEmailRegex = new RegExp(
+      "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$"
+    );
+    
+    if (field.hasChanged) {
+        if (field.value.length == 0) {
+            error = "This field is required";
+        }
+        else if (!validEmailRegex.test(field.value)) {
+            error = "Please enter a valid email address.";
+        }
+    }
+
+    return error.trim();
+  });
+
+  const initialized = createMemo(() => recaptchaScriptLoading());
+  const [processing, setProcessing] = createSignal(false);
+
 
   return (
-    <div class="flex bg-white py-24 justify-center">
-      <div class="p-12 text-center max-w-2xl">
-        <div class="md:text-3xl text-3xl font-bold">
-          You Have Successfully Unsubscribed!
-        </div>
-        <p class="text-xl font-normal mt-4">
-          Sorry it didn't work out. I hope we can cross paths again once more in
-          the near future.
-        </p>
-      </div>
-    </div>
+    <Show when={initialized()} fallback={<Spinner />}>
+        <Show when = {!hasUnsubscribed()} fallback={<UnsubscribeComplete />}>
+            <Show when = {!processing()} fallback={<Spinner />}>
+                Form
+            </Show>
+        </Show>
+    </Show>
   );
 };
 
