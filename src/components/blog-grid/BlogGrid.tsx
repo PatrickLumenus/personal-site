@@ -21,6 +21,7 @@ const BlogGrid: Component = () => {
         <MessageBox
           actionText="retry"
           onConfirm={() => {
+            refetch();
             reset();
           }}
           message={getMessageForError(error)}

@@ -38,8 +38,8 @@ const PortfolioOverview: Component = () => {
               message={getMessgeForError(error)}
               actionText="Retry"
               onConfirm={() => {
-                reset();
                 refetch();
+                reset();
               }}
             />
           }

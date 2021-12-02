@@ -64,7 +64,13 @@ export const unsubscribeEmail = async (email: string, token: string): Promise<vo
     }
     catch (e) {
         console.log(e)
-        if (e instanceof ServerErrorException) {
+        if (
+            (e instanceof ServerErrorException) ||
+            (e instanceof TooManyRequestsException) ||
+            (e instanceof NotFoundException) ||
+            (e instanceof ForbiddenException) ||
+            (e instanceof BadRequestException)
+        ) {
             throw e;
         }
         else {

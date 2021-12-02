@@ -21,6 +21,7 @@ const PortfolioGrid: Component = () => {
         <MessageBox
           actionText="retry"
           onConfirm={() => {
+            refetch();
             reset();
           }}
           message={getMessageForError(error)}
@@ -38,7 +39,7 @@ const PortfolioGrid: Component = () => {
             </For>
           </div>
           <Show when={hasUnloadedProjectContent()}>
-            <div class="flex content-center justify-center py-4">
+            <div class="flex content-center justify-center py-4 h-full">
               <button
                 onClick={refetch}
                 class="bg-primary rounded-md font-bold text-white text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-white hover:text-primary mr-2"

@@ -10,7 +10,6 @@ import MessageBox from "./../message-box/MessageBox";
 import Spinner from "./../spinner/Spinner";
 import { getLattestBlogs } from "../../stores/blogs/blogs.store";
 import { getMessageForError, getTrimmedBlogList } from "./blog-overview.fns";
-import { BlogInterface } from "../../stores/blogs/interfaces/blog.interface";
 
 /**
  * BlogSummary Component
@@ -34,8 +33,8 @@ const BlogOverview: Component = () => {
               message={getMessageForError(error)}
               actionText="Retry"
               onConfirm={() => {
-                reset();
                 refetch();
+                reset();
               }}
             />
           )}
