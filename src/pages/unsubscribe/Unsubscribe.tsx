@@ -65,6 +65,7 @@ const Unsubscribe: Component = () => {
   const submitForm = async () => {
     setProcessing(true);
     setServerError("");
+
     const token = await grecaptcha.enterprise.execute(recaptchaKey, {
       action: "unsubscribe",
     });
@@ -148,7 +149,7 @@ const Unsubscribe: Component = () => {
                   onClick={submitForm}
                   disabled={!canUnsubscribe()}
                 >
-                  Send
+                  Unsubscribe
                 </button>
               </div>
             </div>

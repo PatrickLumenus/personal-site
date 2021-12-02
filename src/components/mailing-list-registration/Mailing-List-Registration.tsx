@@ -17,6 +17,8 @@ import { ServerErrorException } from "../../utils/errors/server-error.exception"
 import { recaptchaKey } from "../../constants";
 import { recaptchaScriptLoading } from "../../App";
 
+import mailinglistBg from './../../assets/mailing-list-bg.jpeg';
+
 interface FormField {
   value: string;
   hasChanged: boolean;
@@ -151,11 +153,20 @@ const MailingListRegistration: Component = () => {
     setError("");
   };
 
+  /**
+   * getBgStyles()
+   * 
+   * gets the background styles.
+   */
+  const getBgStyles = (): string => {
+    return `background-repeat: no-repeat; background-size: cover; background-blend-mode: multiply;background-position: center center;background-image: url('${mailinglistBg}');`;
+  }
+
   return (
     <Show when={!initializing()} fallback={<Spinner />}>
       <div
         class="w-full flex flex-row flex-wrap bg-gray-600 p-10 py-20 justify-center"
-        style="background-repeat: no-repeat; background-size: cover; background-blend-mode: multiply;background-position: center center;background-image: url('https://images.unsplash.com/photo-1573079487717-f8ebae0b1539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80');"
+        style={getBgStyles()}
       >
         <div class="w-full text-center">
           <h1 class="text-3xl text-center text-white antialiased">

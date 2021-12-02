@@ -10,6 +10,13 @@ module.exports = {
         secondary: '#7FB800',
         error: '#ED1C24'
       },
+      fontFamily: {
+        sans: ['Raleway'],
+        serif: ['Raleway'],
+        mono: ['Raleway'],
+        display: ['Raleway'],
+        body: ['Raleway']
+      }
     },
   },
   variants: {
