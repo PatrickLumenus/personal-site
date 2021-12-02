@@ -17,7 +17,7 @@ import { ServerErrorException } from "../../utils/errors/server-error.exception"
 import { recaptchaKey } from "../../constants";
 import { recaptchaScriptLoading } from "../../App";
 
-import mailinglistBg from './../../assets/mailing-list-bg.jpeg';
+import mailinglistBg from './../../assets/mailing-list-bg.jpg';
 
 interface FormField {
   value: string;
