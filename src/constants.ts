@@ -8,7 +8,7 @@ export const recaptchaKey = "6Lf1JQkdAAAAAAy6E9uo9YseK3mP8I2FBGJ-gSi0";
 /**
  * The base API endpoint.
  */
-export const baseApiEndpoint = "http://localhost:5000";
+export const baseApiEndpoint = "https://api.patrickluy.com";
 
 // request timeout in miliseconds.
 export const httpRequestTimeout = 10000 // 10 seconds.
