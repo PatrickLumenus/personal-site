@@ -66,11 +66,10 @@ const Unsubscribe: Component = () => {
     setProcessing(true);
     setServerError("");
 
-    const token = await grecaptcha.enterprise.execute(recaptchaKey, {
-      action: "unsubscribe",
-    });
-
     try {
+      const token = await grecaptcha.enterprise.execute(recaptchaKey, {
+        action: "unsubscribe",
+      });
       await unsubscribeEmail(emailField().value, token);
 
       setHasUnsubscribed(true);

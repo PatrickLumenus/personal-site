@@ -28,7 +28,7 @@ export const missionText = `
     Great products follow greater ideas. I believe that software
     should not just offer a great user experience. It should also
     offer a great developer experience. Code that is easy to maintain
-    and follows best practices can have many benefits to clients, even
+    and follows best practices can have many benefits to users, even
     if it is not obvious at first.
 `;
 
