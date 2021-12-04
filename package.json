@@ -6,7 +6,9 @@
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "deploy": "gcloud app deploy",
+    "gcp-build": "yarn build"
   },
   "license": "MIT",
   "devDependencies": {
