@@ -11,7 +11,7 @@ export const recaptchaKey = "6Lf1JQkdAAAAAAy6E9uo9YseK3mP8I2FBGJ-gSi0";
 export const baseApiEndpoint = "https://api.patrickluy.com";
 
 // request timeout in miliseconds.
-export const httpRequestTimeout = 10000 // 10 seconds.
+export const httpRequestTimeout = 20000 // 20 seconds.
 
 // ====================================
 // Hero
